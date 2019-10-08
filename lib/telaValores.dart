@@ -73,9 +73,8 @@ class _TelaValoresState extends State<TelaValores> {
     List<Widget> lista = [];
     lista += listaTextEdits();
     lista.add(Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Text('Número de players: $numeroDePlayersEscolhido'),
         IconButton(
             icon: Icon(Icons.remove),
             onPressed: () {
@@ -85,6 +84,10 @@ class _TelaValoresState extends State<TelaValores> {
                   numeroDePlayersEscolhido--;
                 });
             }),
+        Text(
+          'Número de players: $numeroDePlayersEscolhido',
+          style: TextStyle(fontSize: 18.0),
+        ),
         IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
@@ -101,7 +104,7 @@ class _TelaValoresState extends State<TelaValores> {
     lista.add(Center(
       child: Text(
         (calculado ? 'Resultado:' : ''),
-        style: TextStyle(fontSize: 20.0),
+        style: TextStyle(fontSize: 22.0),
       ),
     ));
     if (calculado) lista += listaResultado();
@@ -123,65 +126,55 @@ class _TelaValoresState extends State<TelaValores> {
       lista.add(Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
+          padding: EdgeInsets.all(10.0),
           color: Colors.white,
-          child: ListTile(
-            leading: Text(
-              'Player ${i + 1}',
-              style: TextStyle(color: Colors.black),
-            ),
-            title: Row(
-              children: <Widget>[
-                Expanded(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.attach_money,
-                      color: Colors.black,
-                    ),
-                    title: TextField(
-                      keyboardType: TextInputType.numberWithOptions(),
-                      inputFormatters: [
-                        WhitelistingTextInputFormatter.digitsOnly
-                      ],
-                      decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(),
-                          hintText: 'Loot',
-                          hintStyle: TextStyle(color: Colors.black)),
-                      style: TextStyle(color: Colors.black),
-                      onChanged: (valor) {
-                        setState(() {
-                          calculado = false;
-                        });
-                      },
-                      controller: loots[i],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.money_off,
-                      color: Colors.black,
-                    ),
-                    title: TextField(
-                        keyboardType: TextInputType.numberWithOptions(),
-                        inputFormatters: [
-                          WhitelistingTextInputFormatter.digitsOnly
-                        ],
-                        decoration: InputDecoration(
-                            enabledBorder: UnderlineInputBorder(),
-                            hintText: 'Waste',
-                            hintStyle: TextStyle(color: Colors.black)),
-                        style: TextStyle(color: Colors.black),
-                        controller: wastes[i],
-                        onChanged: (valor) {
-                          setState(() {
-                            calculado = false;
-                          });
-                        }),
-                  ),
-                )
-              ],
-            ),
+          child: Row(
+            children: <Widget>[
+              Text(
+                'Player ${i + 1}:',
+                style: TextStyle(color: Colors.black, fontSize: 18.0),
+              ),
+              Icon(
+                Icons.attach_money,
+                color: Colors.black,
+              ),
+              Expanded(
+                  child: TextField(
+                keyboardType: TextInputType.numberWithOptions(),
+                inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(),
+                    hintText: 'Loot',
+                    hintStyle: TextStyle(color: Colors.black)),
+                style: TextStyle(color: Colors.black),
+                onChanged: (valor) {
+                  setState(() {
+                    calculado = false;
+                  });
+                },
+                controller: loots[i],
+              )),
+              Icon(
+                Icons.money_off,
+                color: Colors.black,
+              ),
+              Expanded(
+                  child: TextField(
+                keyboardType: TextInputType.numberWithOptions(),
+                inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(),
+                    hintText: 'Waste',
+                    hintStyle: TextStyle(color: Colors.black)),
+                style: TextStyle(color: Colors.black),
+                onChanged: (valor) {
+                  setState(() {
+                    calculado = false;
+                  });
+                },
+                controller: wastes[i],
+              )),
+            ],
           ),
         ),
       ));
@@ -220,3 +213,61 @@ class _TelaValoresState extends State<TelaValores> {
     );
   }
 }
+
+//
+//ListTile(
+//leading: ,
+//title: Row(
+//children: <Widget>[
+//Expanded(
+//child: ListTile(
+//leading: Icon(
+//Icons.attach_money,
+//color: Colors.black,
+//),
+//title: TextField(
+//keyboardType: TextInputType.numberWithOptions(),
+//inputFormatters: [
+//WhitelistingTextInputFormatter.digitsOnly
+//],
+//decoration: InputDecoration(
+//enabledBorder: UnderlineInputBorder(),
+//hintText: 'Loot',
+//hintStyle: TextStyle(color: Colors.black)),
+//style: TextStyle(color: Colors.black),
+//onChanged: (valor) {
+//setState(() {
+//calculado = false;
+//});
+//},
+//controller: loots[i],
+//),
+//),
+//),
+//Expanded(
+//child: ListTile(
+//leading: Icon(
+//Icons.money_off,
+//color: Colors.black,
+//),
+//title: TextField(
+//keyboardType: TextInputType.numberWithOptions(),
+//inputFormatters: [
+//WhitelistingTextInputFormatter.digitsOnly
+//],
+//decoration: InputDecoration(
+//enabledBorder: UnderlineInputBorder(),
+//hintText: 'Waste',
+//hintStyle: TextStyle(color: Colors.black)),
+//style: TextStyle(color: Colors.black),
+//controller: wastes[i],
+//onChanged: (valor) {
+//setState(() {
+//calculado = false;
+//});
+//}),
+//),
+//)
+//],
+//),
+//)

@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
       title: 'Calculadora de loot',
       theme: ThemeData.dark(),
       home: TelaValores(),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

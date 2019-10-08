@@ -204,7 +204,15 @@ class _TelaValoresState extends State<TelaValores> {
       ),
       appBar: AppBar(
         //TODO fazer tela de ajuda e dicas
-        //actions: <Widget>[IconButton(icon: Icon(Icons.help), onPressed: () {})],
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(Icons.help),
+//            onPressed: () {
+//              Navigator.push(context,
+//                  MaterialPageRoute(builder: (context) => TelaValores()));
+//            },
+//          )
+//        ],
         title: Text('Calculadora de Loot'),
       ),
       body: ListView(
@@ -213,61 +221,3 @@ class _TelaValoresState extends State<TelaValores> {
     );
   }
 }
-
-//
-//ListTile(
-//leading: ,
-//title: Row(
-//children: <Widget>[
-//Expanded(
-//child: ListTile(
-//leading: Icon(
-//Icons.attach_money,
-//color: Colors.black,
-//),
-//title: TextField(
-//keyboardType: TextInputType.numberWithOptions(),
-//inputFormatters: [
-//WhitelistingTextInputFormatter.digitsOnly
-//],
-//decoration: InputDecoration(
-//enabledBorder: UnderlineInputBorder(),
-//hintText: 'Loot',
-//hintStyle: TextStyle(color: Colors.black)),
-//style: TextStyle(color: Colors.black),
-//onChanged: (valor) {
-//setState(() {
-//calculado = false;
-//});
-//},
-//controller: loots[i],
-//),
-//),
-//),
-//Expanded(
-//child: ListTile(
-//leading: Icon(
-//Icons.money_off,
-//color: Colors.black,
-//),
-//title: TextField(
-//keyboardType: TextInputType.numberWithOptions(),
-//inputFormatters: [
-//WhitelistingTextInputFormatter.digitsOnly
-//],
-//decoration: InputDecoration(
-//enabledBorder: UnderlineInputBorder(),
-//hintText: 'Waste',
-//hintStyle: TextStyle(color: Colors.black)),
-//style: TextStyle(color: Colors.black),
-//controller: wastes[i],
-//onChanged: (valor) {
-//setState(() {
-//calculado = false;
-//});
-//}),
-//),
-//)
-//],
-//),
-//)

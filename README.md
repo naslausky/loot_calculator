@@ -1,16 +1,15 @@
-# loot_calculator
+# Loot Calculator
 
 Calculadora de loot para hunts em grupo.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Aplicativo para estudo de aplicação de conceitos gerais de Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+Este aplicativo pede como entrada quanto cada jogador coletou e gastou de recursos.
+Após a inserção, e o botão de check pressionado, o aplicativo mostra o quanto cada um deve receber ou pagar para igualar o lucro de todos os jogadores.
+Uma opção de compartilhamento é disponibilizada para fácil envio do texto do resultado.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## A fazer:
+Tela de ajuda
+Comunicação com Firebase

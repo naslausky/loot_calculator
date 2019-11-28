@@ -11,9 +11,40 @@ class _TelaValoresState extends State<TelaValores> {
   final MAX_NUMERO_PLAYERS_PERMITIDO = 5;
   List<TextEditingController> wastes = [];
   List<TextEditingController> loots = [];
+  List<int> vocacoesEscolhidas = [];
   int numeroDePlayersEscolhido = 2;
   String compartilhamento;
   bool calculado = false;
+  int numeroDeVocacoesRepetidas({int vocacao, int indice}) {
+    int resultado = 0;
+    //print("vocação $vocacao");
+    //print("Vocacoes : $vocacoesEscolhidas");
+    for (int j = 0; j < indice; j++) {
+      //print(vocacao);
+
+      if (vocacoesEscolhidas[j] == vocacao) {
+        resultado++;
+      }
+    }
+    //print("indice: $indice");
+    //print("resultado:$resultado");
+    //print("INDICE: $indice resultado: $resultado");
+    return resultado;
+  }
+
+  String emojiParaIndice(int i) {
+    if (i % 4 == 0) {
+      //return '⚔️';
+      //return '🛡';
+      return '🗡';
+    } else if (i % 4 == 1)
+      return '🏹';
+    else if (i % 4 == 2)
+      return '🔥';
+    else
+      return '❄️';
+  }
+
   List<Widget> listaResultado() {
     int wasteTotal = 0;
     int lootTotal = 0;
@@ -51,9 +82,11 @@ class _TelaValoresState extends State<TelaValores> {
       } catch (e) {}
 
       profitDoPlayer = lootPlayer - wastePlayer;
+      String numerodoPlayer =
+          "${numeroDeVocacoesRepetidas(vocacao: vocacoesEscolhidas[i], indice: i) > 0 ? numeroDeVocacoesRepetidas(vocacao: vocacoesEscolhidas[i], indice: i) + 1 : ""}";
 
       String textoDoPlayer = calculado
-          ? 'Player ${i + 1}: ${(profitDoPlayer > paraCadaUm) ? 'paga ${(profitDoPlayer - paraCadaUm).toStringAsFixed(2)}' : 'recebe ${(paraCadaUm - profitDoPlayer).toStringAsFixed(2)}'}'
+          ? '${emojiParaIndice(vocacoesEscolhidas[i])}$numerodoPlayer: ${(profitDoPlayer > paraCadaUm) ? 'paga ${(profitDoPlayer - paraCadaUm).toStringAsFixed(2)}' : 'recebe ${(paraCadaUm - profitDoPlayer).toStringAsFixed(2)}'}'
           : '';
       compartilhamento += textoDoPlayer + '\n';
       lista.add(
@@ -123,6 +156,7 @@ class _TelaValoresState extends State<TelaValores> {
   List<Widget> listaTextEdits() {
     List<Widget> lista = [];
     for (int i = 0; i < numeroDePlayersEscolhido; i++) {
+      //print(numeroDePlayersEscolhido);
       lista.add(Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
@@ -130,9 +164,17 @@ class _TelaValoresState extends State<TelaValores> {
           color: Colors.white,
           child: Row(
             children: <Widget>[
-              Text(
-                'Player ${i + 1}:',
-                style: TextStyle(color: Colors.black, fontSize: 18.0),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    calculado = false;
+                    vocacoesEscolhidas[i] = (vocacoesEscolhidas[i] + 1) % 4;
+                  });
+                },
+                child: Text(
+                  '${emojiParaIndice(vocacoesEscolhidas[i])}${numeroDeVocacoesRepetidas(vocacao: vocacoesEscolhidas[i], indice: i) > 0 ? numeroDeVocacoesRepetidas(vocacao: vocacoesEscolhidas[i], indice: i) + 1 : ""}',
+                  style: TextStyle(color: Colors.black, fontSize: 18.0),
+                ),
               ),
               Icon(
                 Icons.attach_money,
@@ -164,7 +206,7 @@ class _TelaValoresState extends State<TelaValores> {
                 inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
                     enabledBorder: UnderlineInputBorder(),
-                    hintText: 'Waste',
+                    hintText: 'Supplies',
                     hintStyle: TextStyle(color: Colors.black)),
                 style: TextStyle(color: Colors.black),
                 onChanged: (valor) {
@@ -184,11 +226,12 @@ class _TelaValoresState extends State<TelaValores> {
 
   @override
   void initState() {
+    super.initState();
     for (int i = 0; i < MAX_NUMERO_PLAYERS_PERMITIDO; i++) {
       wastes.add(TextEditingController());
       loots.add(TextEditingController());
+      vocacoesEscolhidas.add(i % 4);
     }
-    super.initState();
   }
 
   @override

@@ -1,5 +1,5 @@
 ﻿# Loot Calculator
-
+[English](#english) below.
 Calculadora de loot para hunts em grupo.
 
 ## Getting Started
@@ -15,6 +15,26 @@ Uma opção de compartilhamento é disponibilizada para fácil envio do texto do
 ![Print do resultado](/docs/printscreen2Resize.png)
 
 ## A fazer:
-Tela de ajuda/dicas.
+- Tela de ajuda/dicas.
+- Refatorar os widgets criados e tornar um aplicativo modelo. 
+- Comunicação com Firebase.
 
-Comunicação com Firebase.
+### English
+___
+Loot-split calculator for online-gaming hunt sessions.
+
+## Getting Started
+
+App made during my Flutter course to study basic concepts.
+
+The input is how much resources each player has looted and wasted.
+It's allowed to customize each player's class with 4 possible emoji's (🗡, 🏹, 🔥, ❄️).
+A blank field is treated as zero value.
+After the data insertion and the check button is pressed, the app will show how much each player must pay or receive in order to make the profit of everyone equal.
+A sharing option is offered to make it easier to send to your party members :).
+
+## To-do:
+
+- Help/tips screen 
+- Refactor all the widgets and make this app an example.
+- Firebase communication
